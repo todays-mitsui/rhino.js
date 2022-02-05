@@ -49,6 +49,7 @@ const textureMap = new Map([
   [6, texture(6)],
 ]);
 
+let currentPips = 1;
 let prevOrthant = 0;
 Events.on(engine, 'beforeUpdate', () => {
   const orthant = Math.floor(dice.angle * 2 / Math.PI + 0.5) % 4;
@@ -57,6 +58,9 @@ Events.on(engine, 'beforeUpdate', () => {
 
   prevOrthant = orthant;
 
-  const next = Math.floor(Math.random() * 6) + 1;
-  dice.render!.sprite!.texture = textureMap.get(next)!;
+  const next = Math.floor(Math.random() * 5);
+  const pips = Array.from(Array(6), (_, i) => i + 1);
+  const nextPips = pips.filter(pip => pip != currentPips)[next];
+
+  dice.render!.sprite!.texture = textureMap.get(nextPips)!;
 });
