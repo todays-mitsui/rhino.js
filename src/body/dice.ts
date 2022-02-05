@@ -14,8 +14,8 @@ export function createDice(x: number, y: number, size: number = 30): Body {
       render: {
         sprite: {
           texture: texture(6),
-          xScale: 1,
-          yScale: 1,
+          xScale: 0.5,
+          yScale: 0.5,
         },
       }
     }
