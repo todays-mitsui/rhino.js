@@ -10,7 +10,7 @@ const app = document.querySelector<HTMLDivElement>('#app')!;
 const cw = app.clientWidth;
 const ch = app.clientHeight;
 
-const dice = createDice(cw / 2, ch / 4);
+const dice = createDice(cw / 2, ch / 6);
 
 const engine = Engine.create();
 World.add(engine.world, [
