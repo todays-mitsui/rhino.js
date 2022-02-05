@@ -6,7 +6,7 @@ export function texture(n: number) {
   canvas.height = 60;
 
   const ctx = canvas.getContext('2d')!;
-  ctx.font = '86px sans-serif';
+  ctx.font = '74px sans-serif';
   ctx.fillStyle = 'rgba(0, 0, 0)';
   ctx.textBaseline = 'middle';
   ctx.textAlign = 'center';
