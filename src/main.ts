@@ -1,8 +1,23 @@
 import { Events } from 'matter-js';
+import { DeviceMotion } from './devicemotion';
 import { rhinoCanvas } from './rhino';
 import { createDice, setVelocity, changeTexture } from './body/dice';
 import { texture } from './texture';
 import './style.css';
+
+const devicemotion = new DeviceMotion();
+
+const start = document.querySelector<HTMLDivElement>('.start')!;
+start.addEventListener('click', async () => {
+  const state = await devicemotion.requestPermission();
+  start.remove();
+
+  if (state) {
+    window.addEventListener('devicemotion', event => {
+      devicemotion.hander(event);
+    });
+  }
+});
 
 const app = document.querySelector<HTMLDivElement>('#app')!;
 const cw = app.clientWidth;
@@ -48,3 +63,9 @@ document.querySelector<HTMLButtonElement>('#transparent')!
     ground.render!.lineWidth = 0;
     ground.render!.strokeStyle = 'transparent';
   });
+
+devicemotion.onDeviceMotion(() => {
+  if (devicemotion.enable) {
+    console.log({ acceleration: devicemotion.acceleration });
+  }
+});
