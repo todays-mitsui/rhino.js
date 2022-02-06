@@ -13,7 +13,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.conatiner {
+.container {
   position: relative;
   height: 100%;
 }
