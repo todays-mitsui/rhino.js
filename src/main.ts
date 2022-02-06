@@ -73,7 +73,7 @@ function main(devicemotion: DeviceMotion) {
       const { x, y, norm } = devicemotion.acceleration;
       if (norm > 1) {
         console.log({ x, y, norm });
-        onAcceleration(100 * x, 100 * y);
+        onAcceleration(5 * x, 5 * y);
       }
     }
   });
