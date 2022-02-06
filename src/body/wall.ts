@@ -1,6 +1,6 @@
-import { Bodies, Body, } from 'matter-js';
+import { Bodies } from 'matter-js';
 
-export function createWalls(clientWidth: number, clientHeight: number): Body[] {
+export function createWalls(clientWidth: number, clientHeight: number) {
   const margin = 2;
   const thickness = 20;
 
@@ -25,7 +25,12 @@ export function createWalls(clientWidth: number, clientHeight: number): Body[] {
     clientHeight - thickness,
     clientWidth + 2 * margin,
     thickness * 2,
-    { isStatic: true }
+    {
+      isStatic: true,
+      render: {
+        fillStyle: '#000000',
+      },
+    }
   );
 
   const right = Bodies.rectangle(
@@ -36,5 +41,5 @@ export function createWalls(clientWidth: number, clientHeight: number): Body[] {
     { isStatic: true }
   );
 
-  return [top, left, bottom, right];
+  return { top, left, bottom, right };
 }

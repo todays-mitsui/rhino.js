@@ -1,43 +1,19 @@
-import { Runner, Render, World, Body, Engine, Events } from 'matter-js';
-import { createWalls } from './body/wall';
-import { createDice } from './body/dice';
-import { newVelocity } from './newVelocity';
+import { Events } from 'matter-js';
+import { rhinoCanvas } from './rhino';
+import { createDice, setVelocity, changeTexture } from './body/dice';
 import { texture } from './texture';
 import './style.css';
 
 const app = document.querySelector<HTMLDivElement>('#app')!;
-
 const cw = app.clientWidth;
 const ch = app.clientHeight;
 
-const dice = createDice(cw / 2, ch / 6);
+const dice = createDice(cw / 2, ch / 4);
 
-const engine = Engine.create();
-World.add(engine.world, [
-  ...createWalls(cw, ch),
-  dice,
-]);
-
-const render = Render.create({
-  element: app,
-  engine,
-  options: {
-    width: cw,
-    height: ch,
-    wireframes: false,
-    background: 'transparent',
-  },
-})
-Render.run(render);
-
-const runner = Runner.create();
-Runner.run(runner, engine);
+const { engine, render, runner, ground } = rhinoCanvas(app, dice);
 
 app.addEventListener('click', () => {
-  const { xVelocity: x, yVelocity: y, angularVelocity } = newVelocity();
-
-  Body.setVelocity(dice, { x, y });
-  Body.setAngularVelocity(dice, angularVelocity);
+  setVelocity(dice);
 });
 
 const textureMap = new Map([
@@ -49,18 +25,25 @@ const textureMap = new Map([
   [6, texture(6)],
 ]);
 
-let currentPips = 1;
-let prevOrthant = 0;
-Events.on(engine, 'beforeUpdate', () => {
-  const orthant = Math.floor(dice.angle * 2 / Math.PI + 0.5) % 4;
+Events.on(engine, 'beforeUpdate', changeTexture(dice, textureMap));
 
-  if (prevOrthant == orthant) { return; }
+document.querySelector<HTMLButtonElement>('#fill')!
+  .addEventListener('click', () => {
+    ground.render!.fillStyle = '#000000';
+    ground.render!.lineWidth = 0;
+    ground.render!.strokeStyle = 'transparent';
+  });
 
-  prevOrthant = orthant;
+document.querySelector<HTMLButtonElement>('#line')!
+  .addEventListener('click', () => {
+    ground.render!.fillStyle = 'transparent';
+    ground.render!.lineWidth = 0.5;
+    ground.render!.strokeStyle = '#000000';
+  });
 
-  const next = Math.floor(Math.random() * 5);
-  const pips = Array.from(Array(6), (_, i) => i + 1);
-  const nextPips = pips.filter(pip => pip != currentPips)[next];
-
-  dice.render!.sprite!.texture = textureMap.get(nextPips)!;
-});
+document.querySelector<HTMLButtonElement>('#transparent')!
+  .addEventListener('click', () => {
+    ground.render!.fillStyle = 'transparent';
+    ground.render!.lineWidth = 0;
+    ground.render!.strokeStyle = 'transparent';
+  });
