@@ -73,13 +73,13 @@ function main(devicemotion: DeviceMotion) {
       const { x, y, norm } = devicemotion.acceleration;
       if (norm > 1) {
         console.log({ x, y, norm });
-        onAcceleration(5 * x, 5 * y);
+        onAcceleration(20 * x, 20 * y);
       }
     }
   });
 
   Events.on(engine, 'beforeUpdate', event => {
-    if (devicemotion.enable && event.timestamp % 500 < 50) {
+    if (devicemotion.enable && event.timestamp % 400 < 50) {
       const { x, y } = devicemotion.gravity;
       const norm = x * x + y * y;
       if (norm >= 4) {
