@@ -49,7 +49,6 @@ export class DeviceMotion {
     this.gy = (1 - K) * this.gy + K * gy!;
     this.gz = (1 - K) * this.gz + K * gz!;
 
-    console.log(this.callbacks);
     for (let callback of this.callbacks) {
       callback(event);
     }
