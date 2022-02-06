@@ -26,7 +26,7 @@ function main(devicemotion: DeviceMotion) {
   const cw = app.clientWidth;
   const ch = app.clientHeight;
 
-  const dice = createDice(cw / 2, ch / 4);
+  const dice = createDice(cw / 2, ch / 3);
 
   /* @ts-ignore */
   const { engine, render, runner, ground } = rhinoCanvas(app, dice);
@@ -71,9 +71,7 @@ function main(devicemotion: DeviceMotion) {
   devicemotion.onDeviceMotion(() => {
     if (devicemotion.enable) {
       const { norm } = devicemotion.acceleration;
-      if (norm > 1) {
-        onAcceleration(norm * 0.02);
-      }
+      if (norm > 1) { onAcceleration(norm * 0.1); }
     }
   });
 }
