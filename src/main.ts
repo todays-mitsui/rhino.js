@@ -10,6 +10,7 @@ const ch = app.clientHeight;
 
 const dice = createDice(cw / 2, ch / 4);
 
+/* @ts-ignore */
 const { engine, render, runner, ground } = rhinoCanvas(app, dice);
 
 app.addEventListener('click', () => {

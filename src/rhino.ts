@@ -1,4 +1,4 @@
-import { Runner, Render, World, Body, Engine, Events } from 'matter-js';
+import { Runner, Render, World, Body, Engine } from 'matter-js';
 import { createWalls } from './body/wall';
 
 export function rhinoCanvas(elem: HTMLDivElement, dice: Body) {
