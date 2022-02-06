@@ -1,9 +1,9 @@
-export function throttle(callback: () => void, interval: number = 500) {
+export function throttle(callback: (...args: any[]) => void, interval: number = 500) {
   let lastTime = Date.now() - interval;
-  return () => {
+  return (...args: any[]) => {
     if (lastTime + interval < Date.now()) {
       lastTime = Date.now();
-      callback();
+      callback(...args);
     }
   };
 }

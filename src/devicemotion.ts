@@ -65,9 +65,16 @@ export class DeviceMotion {
   }
 
   public get acceleration() {
-    if (!this._enable) { return 0; }
+    if (!this._enable) { return { x: 0, y: 0, z: 0, norm: 0 }; }
 
-    return this.ax * this.ax + this.ay * this.ay + this.az * this.az;
+    const norm = this.ax * this.ax + this.ay * this.ay + this.az * this.az;
+
+    return {
+      x: this.ax,
+      y: this.ay,
+      z: this.az,
+      norm,
+    };
   }
 
   public get gravity() {

@@ -25,8 +25,20 @@ export function createDice(x: number, y: number, size: number = 30): Body {
   return dice;
 }
 
-export function setVelocity(body: Body) {
-  const { x, y, angular} = nextVelocity();
+export function setVelocity(
+  body: Body,
+  x?: number,
+  y?: number,
+  angular?: number,
+) {
+  if (x == null || y == null || angular == null) {
+    const { x: _x, y: _y, angular: _angular} = nextVelocity();
+
+    x = x || _x;
+    y = y || _y;
+    angular = angular || _angular;
+  }
+
   Body.setVelocity(body, { x, y });
   Body.setAngularVelocity(body, angular);
 }
