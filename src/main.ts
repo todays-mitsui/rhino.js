@@ -67,7 +67,7 @@ function main(devicemotion: DeviceMotion) {
       ground.render!.strokeStyle = 'transparent';
     });
 
-  const onAcceleration = throttle((norm) => { setVelocity(dice, null, null, norm); }, 2000);
+  const onAcceleration = throttle((norm) => { setVelocity(dice, null, null, norm); }, 1200);
   devicemotion.onDeviceMotion(() => {
     if (devicemotion.enable) {
       const { norm } = devicemotion.acceleration;
