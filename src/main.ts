@@ -17,16 +17,10 @@ start.addEventListener('click', async () => {
     });
   }
 
-  devicemotion.onDeviceMotion(() => {
-    if (devicemotion.enable) {
-      console.log({ acceleration: devicemotion.acceleration });
-    }
-  });
-
-  main();
+  main(devicemotion);
 });
 
-function main() {
+function main(devicemotion: DeviceMotion) {
   const app = document.querySelector<HTMLDivElement>('#app')!;
   const cw = app.clientWidth;
   const ch = app.clientHeight;
@@ -71,4 +65,10 @@ function main() {
       ground.render!.lineWidth = 0;
       ground.render!.strokeStyle = 'transparent';
     });
+
+  devicemotion.onDeviceMotion(() => {
+    if (devicemotion.enable && devicemotion.acceleration > 1) {
+      setVelocity(dice);
+    }
+  });
 }
