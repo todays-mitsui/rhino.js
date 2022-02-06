@@ -73,7 +73,7 @@ function main(devicemotion: DeviceMotion) {
       const { x, y, norm } = devicemotion.acceleration;
       if (norm > 1) {
         console.log({ x, y, norm });
-        onAcceleration(x, y);
+        onAcceleration(100 * x, 100 * y);
       }
     }
   });
@@ -85,7 +85,7 @@ function main(devicemotion: DeviceMotion) {
       if (norm >= 6) {
         const l = Math.sqrt(norm);
         engine.gravity.x = x / l;
-        engine.gravity.y = y / l;
+        engine.gravity.y = - y / l;
       }
     }
   });
