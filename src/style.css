@@ -13,6 +13,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  user-select: none;
+}
+
 .container {
   position: relative;
   height: 100%;
