@@ -71,7 +71,7 @@ function main(devicemotion: DeviceMotion) {
   devicemotion.onDeviceMotion(() => {
     if (devicemotion.enable) {
       const { norm } = devicemotion.acceleration;
-      if (norm > 1) { onAcceleration(norm * 0.1); }
+      if (norm > 1) { onAcceleration(norm * 0.15); }
     }
   });
 }
