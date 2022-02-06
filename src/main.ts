@@ -77,16 +77,4 @@ function main(devicemotion: DeviceMotion) {
       }
     }
   });
-
-  Events.on(engine, 'beforeUpdate', event => {
-    if (devicemotion.enable && event.timestamp % 400 < 50) {
-      const { x, y } = devicemotion.gravity;
-      const norm = x * x + y * y;
-      if (norm >= 4) {
-        const l = Math.sqrt(norm);
-        engine.gravity.x = x / l;
-        engine.gravity.y = - y / l;
-      }
-    }
-  });
 }
