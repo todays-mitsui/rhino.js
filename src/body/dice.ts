@@ -27,9 +27,9 @@ export function createDice(x: number, y: number, size: number = 30): Body {
 
 export function setVelocity(
   body: Body,
-  x?: number,
-  y?: number,
-  angular?: number,
+  x: number|null = null,
+  y: number|null = null,
+  angular: number|null = null,
 ) {
   if (x == null || y == null || angular == null) {
     const { x: _x, y: _y, angular: _angular} = nextVelocity();

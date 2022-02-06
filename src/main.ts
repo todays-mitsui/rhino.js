@@ -67,13 +67,12 @@ function main(devicemotion: DeviceMotion) {
       ground.render!.strokeStyle = 'transparent';
     });
 
-  const onAcceleration = throttle((x, y) => { setVelocity(dice, x, y); }, 2000);
+  const onAcceleration = throttle((norm) => { setVelocity(dice, null, null, norm); }, 2000);
   devicemotion.onDeviceMotion(() => {
     if (devicemotion.enable) {
-      const { x, y, norm } = devicemotion.acceleration;
+      const { norm } = devicemotion.acceleration;
       if (norm > 1) {
-        console.log({ x, y, norm });
-        onAcceleration(20 * x, 20 * y);
+        onAcceleration(norm);
       }
     }
   });
