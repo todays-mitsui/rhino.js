@@ -79,10 +79,10 @@ function main(devicemotion: DeviceMotion) {
   });
 
   Events.on(engine, 'beforeUpdate', event => {
-    if (devicemotion.enable && event.timestamp % 1000 < 50) {
+    if (devicemotion.enable && event.timestamp % 500 < 50) {
       const { x, y } = devicemotion.gravity;
       const norm = x * x + y * y;
-      if (norm >= 6) {
+      if (norm >= 4) {
         const l = Math.sqrt(norm);
         engine.gravity.x = x / l;
         engine.gravity.y = - y / l;
