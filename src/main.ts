@@ -3,6 +3,7 @@ import { DeviceMotion } from './devicemotion';
 import { rhinoCanvas } from './rhino';
 import { createDice, setVelocity, changeTexture } from './body/dice';
 import { texture } from './texture';
+import { throttle } from './util';
 import './style.css';
 
 const devicemotion = new DeviceMotion();
@@ -66,9 +67,11 @@ function main(devicemotion: DeviceMotion) {
       ground.render!.strokeStyle = 'transparent';
     });
 
+  const onAcceleration = throttle(() => { setVelocity(dice); });
   devicemotion.onDeviceMotion(() => {
     if (devicemotion.enable && devicemotion.acceleration > 1) {
-      setVelocity(dice);
+      console.log({ acceleration: devicemotion.acceleration });
+      onAcceleration();
     }
   });
 }
