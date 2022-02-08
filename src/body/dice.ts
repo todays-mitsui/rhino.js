@@ -20,7 +20,7 @@ export function createDice(x: number, y: number, size: number = 30): Body {
     }
   );
 
-  setVelocity(dice);
+  setVelocity(dice, null, -0.2);
 
   return dice;
 }
