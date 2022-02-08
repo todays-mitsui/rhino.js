@@ -1,7 +1,7 @@
 export function nextVelocity() {
-  const x = Math.random() * 10 - 5;
+  const x = sign() * binomial(100, 0.3) * 0.08;
   const y = - Math.random() * 12 - 7;
-  const angular = sign() * binomial(100, 0.25) * 0.01;
+  const angular = sign() * binomial(100, 0.3) * 0.01;
 
   return { x, y, angular };
 }
