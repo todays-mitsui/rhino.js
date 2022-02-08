@@ -2,7 +2,7 @@ import { Events } from 'matter-js';
 import { DeviceMotion } from './devicemotion';
 import { rhinoCanvas } from './rhino';
 import { createDice, setVelocity, changeTexture } from './body/dice';
-import { texture } from './texture';
+// import { texture } from './texture';
 import { throttle } from './util';
 import './style.css';
 
@@ -36,12 +36,12 @@ function main(devicemotion: DeviceMotion) {
   });
 
   const textureMap = new Map([
-    [1, texture(1)],
-    [2, texture(2)],
-    [3, texture(3)],
-    [4, texture(4)],
-    [5, texture(5)],
-    [6, texture(6)],
+    [1, '/img/dice-1.png'],
+    [2, '/img/dice-2.png'],
+    [3, '/img/dice-3.png'],
+    [4, '/img/dice-4.png'],
+    [5, '/img/dice-5.png'],
+    [6, '/img/dice-6.png'],
   ]);
 
   Events.on(engine, 'beforeUpdate', changeTexture(dice, textureMap));

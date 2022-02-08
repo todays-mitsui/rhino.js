@@ -1,7 +1,7 @@
 import { Bodies, Body } from 'matter-js';
 import { nextPips, Pips } from '../physics';
 import { nextVelocity } from '../physics';
-import { texture } from '../texture';
+// import { texture } from './texture';
 
 export function createDice(x: number, y: number, size: number = 30): Body {
   const dice = Bodies.rectangle(
@@ -12,9 +12,9 @@ export function createDice(x: number, y: number, size: number = 30): Body {
       friction: 0.05,     // 摩擦係数
       render: {
         sprite: {
-          texture: texture(6),
-          xScale: 0.5,
-          yScale: 0.5,
+          texture: '/img/dice-6.png',
+          xScale: 0.206897,
+          yScale: 0.206897,
         },
       }
     }
