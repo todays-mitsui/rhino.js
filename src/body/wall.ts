@@ -1,44 +1,47 @@
-import { Bodies } from 'matter-js';
+import { Bodies, IChamferableBodyDefinition } from 'matter-js';
 
 export function createWalls(clientWidth: number, clientHeight: number) {
-  const margin = 2;
+  const xPadding = 12;
+  const yPadding = 12;
   const thickness = 20;
+
+  const options: IChamferableBodyDefinition = {
+    isStatic: true,
+    render: {
+      fillStyle: '#ffffff',
+    },
+  }
 
   const top = Bodies.rectangle(
     clientWidth / 2,
-    -(thickness / 2 + margin),
-    clientWidth + 2 * margin,
+    yPadding - thickness / 2,
+    clientWidth,
     thickness,
-    { isStatic: true }
+    options
   );
 
   const left = Bodies.rectangle(
-    -(thickness / 2 + margin),
+    xPadding - thickness / 2,
     clientHeight / 2,
     thickness,
-    clientHeight + 2 * margin,
-    { isStatic: true }
+    clientHeight,
+    options
   );
 
   const bottom = Bodies.rectangle(
     clientWidth / 2,
-    clientHeight - thickness,
-    clientWidth + 2 * margin,
-    thickness * 2,
-    {
-      isStatic: true,
-      render: {
-        fillStyle: '#000000',
-      },
-    }
+    clientHeight - yPadding + thickness / 2,
+    clientWidth,
+    thickness,
+    options
   );
 
   const right = Bodies.rectangle(
-    clientWidth + thickness / 2 + margin,
+    clientWidth - xPadding + thickness / 2,
     clientHeight / 2,
     thickness,
-    clientHeight + 2 * margin,
-    { isStatic: true }
+    clientHeight,
+    options
   );
 
   return { top, left, bottom, right };

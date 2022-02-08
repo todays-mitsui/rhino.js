@@ -46,27 +46,6 @@ function main(devicemotion: DeviceMotion) {
 
   Events.on(engine, 'beforeUpdate', changeTexture(dice, textureMap));
 
-  document.querySelector<HTMLButtonElement>('#fill')!
-    .addEventListener('click', () => {
-      ground.render!.fillStyle = '#000000';
-      ground.render!.lineWidth = 0;
-      ground.render!.strokeStyle = 'transparent';
-    });
-
-  document.querySelector<HTMLButtonElement>('#line')!
-    .addEventListener('click', () => {
-      ground.render!.fillStyle = 'transparent';
-      ground.render!.lineWidth = 0.5;
-      ground.render!.strokeStyle = '#000000';
-    });
-
-  document.querySelector<HTMLButtonElement>('#transparent')!
-    .addEventListener('click', () => {
-      ground.render!.fillStyle = 'transparent';
-      ground.render!.lineWidth = 0;
-      ground.render!.strokeStyle = 'transparent';
-    });
-
   const onAcceleration = throttle((norm) => { setVelocity(dice, null, null, norm); }, 1200);
   devicemotion.onDeviceMotion(() => {
     if (devicemotion.enable) {
