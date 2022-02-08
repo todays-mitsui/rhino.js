@@ -25,7 +25,10 @@ export function createWalls(clientWidth: number, clientHeight: number) {
     clientHeight / 2,
     thickness,
     clientHeight,
-    options
+    {
+      ...options,
+      restitution: 0.9,
+    }
   );
 
   const bottom = Bodies.rectangle(
@@ -41,7 +44,10 @@ export function createWalls(clientWidth: number, clientHeight: number) {
     clientHeight / 2,
     thickness,
     clientHeight,
-    options
+    {
+      ...options,
+      restitution: 0.9,
+    }
   );
 
   return { top, left, bottom, right };
