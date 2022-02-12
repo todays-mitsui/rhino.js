@@ -5,12 +5,6 @@ import { createDice, setVelocity, changeTexture } from './body/dice';
 // import { texture } from './texture';
 import { throttle } from './util';
 import './style.css';
-import dice1 from './img/dice-1.png';
-import dice2 from './img/dice-2.png';
-import dice3 from './img/dice-3.png';
-import dice4 from './img/dice-4.png';
-import dice5 from './img/dice-5.png';
-import dice6 from './img/dice-6.png';
 
 const devicemotion = new DeviceMotion();
 const start = document.querySelector<HTMLDivElement>('.start')!;
@@ -42,12 +36,12 @@ function main(devicemotion: DeviceMotion) {
   });
 
   const textureMap = new Map([
-    [1, dice1],
-    [2, dice2],
-    [3, dice3],
-    [4, dice4],
-    [5, dice5],
-    [6, dice6],
+    [1, '/img/dice-1.png'],
+    [2, '/img/dice-2.png'],
+    [3, '/img/dice-3.png'],
+    [4, '/img/dice-4.png'],
+    [5, '/img/dice-5.png'],
+    [6, '/img/dice-6.png'],
   ]);
 
   Events.on(engine, 'beforeUpdate', changeTexture(dice, textureMap));
