@@ -44,6 +44,11 @@ function main() {
   });
 
   twitter.addEventListener('click', () => {
+    if ('gtag' in window) {
+      /* @ts-ignore */
+      window.gtag('event', 'share', { method: 'Twitter', item_id: rhino.dices });
+    }
+
     const url = 'https://todays-mitsui.github.io/rhino.js/';
     twitter.href = `http://twitter.com/share?url=${url}&text=${rhino.dices}%0a`;
   })
