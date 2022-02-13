@@ -1,4 +1,4 @@
-export class DeviceMotion {
+class DeviceMotion {
   private _enable = true;
   private callbacks: ((event: DeviceMotionEvent) => void)[] = [];
 
@@ -7,35 +7,42 @@ export class DeviceMotion {
   private ax: number;
   private ay: number;
   private az: number;
-  private gx: number;
-  private gy: number;
-  private gz: number;
 
   public constructor() {
     this.ax = 0;
     this.ay = 0;
     this.az = 0;
-    this.gx = 0;
-    this.gy = 0;
-    this.gz = 0;
   }
 
-  public async requestPermission() {
+  public async init() {
     if (DeviceMotionEvent == null) { return this._enable = false; }
 
-    if (!('requestPermission' in DeviceMotionEvent)) { return this._enable = true; }
+    if ('requestPermission' in DeviceMotionEvent) {
+      this._enable = await this.requestPermission();
+    } else {
+      this._enable = true;
+    }
 
+    if (this._enable) {
+      window.addEventListener('devicemotion', event => {
+        this.hander(event);
+      });
+    }
+
+    return this._enable;
+  }
+
+  private async requestPermission() {
     /* @ts-ignore */
     const permissionState = await DeviceMotionEvent.requestPermission();
 
-    return this._enable = permissionState == 'granted';
+    return permissionState == 'granted';
   }
 
-  public hander(event: DeviceMotionEvent) {
+  private hander(event: DeviceMotionEvent) {
     const K = DeviceMotion.K;
 
     let { x, y, z } = event.acceleration!;
-    let { x: gx, y: gy, z: gz } = event.accelerationIncludingGravity!;
 
     if (x == null && y == null && z == null) {
       this._enable = false;
@@ -45,17 +52,18 @@ export class DeviceMotion {
     this.ax = (1 - K) * this.ax + K * x!;
     this.ay = (1 - K) * this.ay + K * y!;
     this.az = (1 - K) * this.az + K * z!;
-    this.gx = (1 - K) * this.gx + K * gx!;
-    this.gy = (1 - K) * this.gy + K * gy!;
-    this.gz = (1 - K) * this.gz + K * gz!;
 
     for (let callback of this.callbacks) {
       callback(event);
     }
   }
 
-  public onDeviceMotion(callback: (event: DeviceMotionEvent) => void) {
+  public on(callback: (event: DeviceMotionEvent) => void) {
     this.callbacks.push(callback);
+  }
+
+  public off(callback: (event: DeviceMotionEvent) => void) {
+    this.callbacks = this.callbacks.filter(_callback => _callback != callback);
   }
 
   // ======================================================================== //
@@ -76,10 +84,6 @@ export class DeviceMotion {
       norm,
     };
   }
-
-  public get gravity() {
-    if (!this._enable) { return { x: 0, y: 0, z: 0 }; }
-
-    return { x: this.gx, y: this.gy, z: this.gz };
-  }
 }
+
+export const devicemotion = new DeviceMotion();
