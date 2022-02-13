@@ -51,7 +51,10 @@ export class Dice {
   }
 
   public disappear(app: HTMLDivElement, engine: Engine) {
-    World.remove(engine.world, this.body);
+    this.setVelocity({ x: 0, y: -4.5 });
+    setTimeout(() => {
+      World.remove(engine.world, this.body);
+    }, 600);
 
     app.removeEventListener('click', this.setVelocity);
     Events.off(engine, 'beforeUpdate', this.changeTexture);

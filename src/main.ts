@@ -45,6 +45,6 @@ function main() {
 
   twitter.addEventListener('click', () => {
     const url = 'https://todays-mitsui.github.io/rhino.js/';
-    twitter.href = `http://twitter.com/share?url=${url}&text=${rhino.dices + '\naaa'}`;
+    twitter.href = `http://twitter.com/share?url=${url}&text=${rhino.dices}%0a`;
   })
 }

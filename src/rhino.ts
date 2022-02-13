@@ -67,7 +67,7 @@ export class Rhino {
   }
 
   public get dices() {
-    return this._dices.map(dice => dice.pip).map(pip => {
+    return this._dices.map(dice => dice.pip).sort().map(pip => {
       switch (pip) {
         case 1: return '⚀';
         case 2: return '⚁';

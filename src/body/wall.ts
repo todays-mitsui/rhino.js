@@ -8,7 +8,7 @@ export function createWalls(clientWidth: number, clientHeight: number) {
   const options: IChamferableBodyDefinition = {
     isStatic: true,
     render: {
-      fillStyle: '#ffffff',
+      fillStyle: 'transparent',
     },
   }
 
