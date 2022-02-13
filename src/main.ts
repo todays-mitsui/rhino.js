@@ -36,12 +36,12 @@ function main(devicemotion: DeviceMotion) {
   });
 
   const textureMap = new Map([
-    [1, texture(1)],
-    [2, texture(2)],
-    [3, texture(3)],
-    [4, texture(4)],
-    [5, texture(5)],
-    [6, texture(6)],
+    [1, texture.get(1)!],
+    [2, texture.get(2)!],
+    [3, texture.get(3)!],
+    [4, texture.get(4)!],
+    [5, texture.get(5)!],
+    [6, texture.get(6)!],
   ]);
 
   Events.on(engine, 'beforeUpdate', changeTexture(dice, textureMap));
@@ -54,3 +54,15 @@ function main(devicemotion: DeviceMotion) {
     }
   });
 }
+
+const c = document.querySelector<HTMLCanvasElement>('#c')!;
+c.width = 60;
+c.height = 60;
+const ctx = c.getContext('2d')!;
+ctx.font = '84px sans-serif';
+ctx.fillStyle = 'rgba(0, 0, 0)';
+ctx.textBaseline = 'middle';
+ctx.textAlign = 'center';
+ctx.fillText('⚂', 30, 27.7);
+const u = c.toDataURL()!;
+console.log(u);

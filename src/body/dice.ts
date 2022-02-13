@@ -12,7 +12,7 @@ export function createDice(x: number, y: number, size: number = 30): Body {
       friction: 0.05,     // 摩擦係数
       render: {
         sprite: {
-          texture: texture(6),
+          texture: texture.get(6)!,
           xScale: 0.5,
           yScale: 0.5,
         },
