@@ -1,3 +1,7 @@
+:root {
+  --color: #1095c1;
+}
+
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -40,4 +44,36 @@ body {
   align-items: center;
 
   font-size: 32px;
+}
+
+nav {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  font-size: 16px;
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav li:not(:first-child) {
+  margin-top: .6em;
+}
+
+nav input[type=radio] {
+  display: none;
+}
+
+nav label {
+  display: block;
+  padding: .2em .6em;
+  border: 1px solid var(--color);
+  border-radius: 4px;
+}
+
+nav input[type=radio]:checked + label {
+  background-color: var(--color);
+  color: #fff;
 }
