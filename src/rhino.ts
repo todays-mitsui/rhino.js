@@ -53,7 +53,7 @@ export class Rhino {
     if (numDices < 0) { throw new Error(); }
 
     for (let i = 0; i < numDices; i++) {
-      const dice = new Dice(this.clientWidth / 2, this.clientHeight / 6);
+      const dice = new Dice(this.clientWidth, this.clientHeight);
       dice.join(this.elem, this.engine);
       this.dices.push(dice);
     }

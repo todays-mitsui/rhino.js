@@ -12,7 +12,10 @@ export class Dice {
   private currentOrthant = 0;
   private currentPips: Pips = 1
 
-  public constructor(x: number, y: number) {
+  public constructor(clientWidth: number, clientHeight: number) {
+    const x = clientWidth * (Math.random() * 0.4 + 0.3);
+    const y = clientHeight * (Math.random() * 0.1 + 0.11);
+
     this.body = Bodies.rectangle(
       x, y, 28, 28,
       {
