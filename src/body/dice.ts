@@ -3,9 +3,9 @@ import { nextPips, Pips } from '../physics';
 import { nextVelocity } from '../physics';
 import { texture } from '../texture';
 
-export function createDice(x: number, y: number, size: number = 30): Body {
+export function createDice(x: number, y: number): Body {
   const dice = Bodies.rectangle(
-    x, y, size, size,
+    x, y, 28, 28,
     {
       angle: 1,           // 初期角度
       restitution: 0.8,   // 反発係数

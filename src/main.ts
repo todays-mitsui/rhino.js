@@ -55,14 +55,14 @@ function main(devicemotion: DeviceMotion) {
   });
 }
 
-const c = document.querySelector<HTMLCanvasElement>('#c')!;
-c.width = 60;
-c.height = 60;
-const ctx = c.getContext('2d')!;
-ctx.font = '84px sans-serif';
-ctx.fillStyle = 'rgba(0, 0, 0)';
-ctx.textBaseline = 'middle';
-ctx.textAlign = 'center';
-ctx.fillText('⚂', 30, 27.7);
-const u = c.toDataURL()!;
-console.log(u);
+// const c = document.querySelector<HTMLCanvasElement>('#c')!;
+// c.width = 56;
+// c.height = 56;
+// const ctx = c.getContext('2d')!;
+// ctx.font = '80px sans-serif';
+// ctx.fillStyle = 'rgba(0, 0, 0)';
+// ctx.textBaseline = 'middle';
+// ctx.textAlign = 'center';
+// ctx.fillText('⚄', 28, 25.5);
+// const u = c.toDataURL()!;
+// console.log(u);
