@@ -11,7 +11,7 @@ export class Rhino {
   private render: Render;
   private runner: Runner;
 
-  private dices: Dice[] = [];
+  private _dices: Dice[] = [];
 
   public constructor(elem: HTMLDivElement) {
     this.elem = elem;
@@ -40,12 +40,12 @@ export class Rhino {
   }
 
   public putDices(numDices: number) {
-    if (this.dices.length == numDices) { return; }
+    if (this._dices.length == numDices) { return; }
 
-    if (this.dices.length > numDices) {
-      this.removeDice(this.dices.length - numDices);
-    } else if (this.dices.length < numDices) {
-      this.addDice(numDices - this.dices.length);
+    if (this._dices.length > numDices) {
+      this.removeDice(this._dices.length - numDices);
+    } else if (this._dices.length < numDices) {
+      this.addDice(numDices - this._dices.length);
     }
   }
 
@@ -55,14 +55,27 @@ export class Rhino {
     for (let i = 0; i < numDices; i++) {
       const dice = new Dice(this.clientWidth, this.clientHeight);
       dice.join(this.elem, this.engine);
-      this.dices.push(dice);
+      this._dices.push(dice);
     }
   }
 
   public removeDice(numDices: number) {
-    const removedDices = this.dices.splice(0, numDices);
+    const removedDices = this._dices.splice(0, numDices);
     for (const dice of removedDices) {
       dice.disappear(this.elem, this.engine);
     }
+  }
+
+  public get dices() {
+    return this._dices.map(dice => dice.pip).map(pip => {
+      switch (pip) {
+        case 1: return '⚀';
+        case 2: return '⚁';
+        case 3: return '⚂';
+        case 4: return '⚃';
+        case 5: return '⚄';
+        case 6: return '⚅';
+      }
+    }).join('');
   }
 }

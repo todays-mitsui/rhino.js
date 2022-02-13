@@ -1,5 +1,6 @@
 :root {
-  --color: #1095c1;
+  /* --color: #1095c1; */
+  --color: #e83929;
 }
 
 *, *::before, *::after {
@@ -19,6 +20,7 @@ body {
 
 body {
   user-select: none;
+  font-family: sans-serif;
 }
 
 .container {
@@ -50,18 +52,23 @@ body {
 
 nav {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 16px;
+  right: 16px;
 
-  font-size: 16px;
+  font-size: 18px;
 }
 
 nav ul {
   list-style: none;
 }
 
+nav li {
+  display: flex;
+  justify-content: flex-end;
+}
+
 nav li:not(:first-child) {
-  margin-top: .6em;
+  margin-top: 12px;
 }
 
 nav input[type=radio] {
@@ -78,4 +85,14 @@ nav label {
 nav input[type=radio]:checked + label {
   background-color: var(--color);
   color: #fff;
+}
+
+nav a {
+  line-height: 0;
+}
+
+nav svg {
+  width: 36px;
+  height: 36px;
+  fill: #1da1f2;
 }

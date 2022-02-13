@@ -82,6 +82,10 @@ export class Dice {
     return choose(options);
   }
 
+  public get pip() {
+    return this.currentPips;
+  }
+
   public setVelocity(velocity: {
     x?: number,
     y?: number,
